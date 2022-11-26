@@ -1,0 +1,129 @@
+<!-- 
+  TODO: Bikin Halaman Daftar
+  TODO: Bikin Halaman Login
+-->
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservasi Hotel</title>
+    <link rel="shortcut icon" href="src/img/logo.png" type="image/x-icon" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CDN -->
+
+    <!-- Custom CSS -->
+    <style type="text/tailwindcss">
+      @layer base {
+        html {
+          -webkit-tap-highlight-color: transparent;
+        }
+      }
+
+      main {
+        background-image: url("src/img/bg.jpg");
+      }
+    </style>
+    <!-- Custom CSS -->
+  </head>
+  <body class="h-full bg-slate-200">
+    <!-- Header -->
+    <header class="container h-1/6 items-center justify-between flex box-border p-4 w-full max-w-7xl bg-slate-200 sm:mx-auto">
+      <!-- Kiri -->
+      <div class="kiri flex items-center gap-3">
+        <!-- Logo -->
+        <figure class="h-20 w-20">
+          <img src="src/img/logo.png" alt="Universitas Tanjungpura" />
+        </figure>
+        <!-- Logo -->
+
+        <!-- Judul Website -->
+        <div class="judul-website">
+          <h1 class="font-bold text-3xl sm:text-4xl">Hotelin</h1>
+        </div>
+        <!-- Judul Website -->
+      </div>
+      <!-- Kiri -->
+
+      <!-- Kanan -->
+      <div class="kanan flex ml-2 gap-3">
+        <!-- Tombol Login -->
+        <a href="" class="py-2 px-4 hover:bg-slate-600 font-semibold text-lg outline outline-slate-600 rounded hover:text-white">Login</a>
+        <!-- Tombol Login -->
+
+        <!-- Tombol Daftar -->
+        <a href="" class="py-2 px-4 bg-slate-600 outline outline-slate-600 hover:bg-slate-900 hover:outline-slate-900 font-semibold text-lg rounded text-white">Daftar</a>
+        <!-- Tombol Daftar -->
+      </div>
+      <!-- Kanan -->
+    </header>
+    <!-- Header -->
+
+    <!-- Hero Section -->
+    <main class="container box-border w-full h-4/6">
+      <div class="content-wrapper max-w-7xl p-4 flex flex-col gap-4 sm:mx-auto">
+        <!-- Judul Website -->
+        <div class="judul-website">
+          <h2 class="text-4xl text-white font-bold">Hotelin</h2>
+          <h3 class="text-2xl text-white font-semibold">Cari Hotel Seenak Jidatmu Disini</h3>
+        </div>
+        <!-- Judul Website -->
+
+        <!-- Motto abal-abal -->
+        <div class="motto">
+          <ul class="text-white flex gap-4 text-xl">
+            <li>Murah</li>
+            <li>Cepat</li>
+            <li>Aman</li>
+          </ul>
+        </div>
+        <!-- Motto abal-abal -->
+
+        <!-- lessgokan -->
+        <div class="letsgo-wrapper">
+          <button id="letsgo" class="bg-white flex py-2 px-4 rounded items-center gap-2">
+            <span class="text-lg font-semibold">Mulai Sekarang</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+              <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+        <!-- lessgokan -->
+      </div>
+    </main>
+    <!-- Hero Section -->
+
+    <!-- Footer -->
+    <footer class="container max-w-7xl sm:mx-auto box-border py-2 px-4 h-1/6">
+      <!-- Tulisan Copyright -->
+      <div class="copyright">
+        <h4 class="font-semibold text-xl sm:text-2xl">Copyright <span id="tahun"></span> - Kelompok 3</h4>
+      </div>
+      <!-- Tulisan Copyright -->
+
+      <!-- Nama Kelompok -->
+      <div class="nama-kelompok sm:mt-2">
+        <ul class="sm:flex sm:divide-x-2 sm:divide-black gap-2">
+          <li>
+            <a href="" target="_blank">Rizki Utama Tedja - D1041201033</a>
+          </li>
+          <li>
+            <a href="" target="_blank" class="sm:ml-2">Muhammad Maulana Zakaria - D1041201060</a>
+          </li>
+          <li>
+            <a href="https://instagram.com/rikaraniii" target="_blank" class="sm:ml-2">Phasya Ananta Pratama - D1041211015</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Nama Kelompok -->
+    </footer>
+    <!-- Footer -->
+
+    <!-- Script JS -->
+    <script src="src/js/script.js" type="module"></script>
+    <!-- Script JS -->
+  </body>
+</html>

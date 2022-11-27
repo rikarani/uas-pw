@@ -8,5 +8,7 @@
 
 ## TODO List
 
-- [ ] Bikin Halaman Daftar
+- [x] Bikin Halaman Daftar
 - [ ] Bikin Halaman Login
+- [ ] Bikin Logic Daftar
+- [ ] Bikin Logic Login

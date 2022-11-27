@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar</title>
+    <title>Hotelin - Daftar</title>
 
     <link rel="shortcut icon" href="../src/img/logo.png" type="image/x-icon">
 
@@ -25,9 +25,9 @@
 </head>
 
 <body class="bg-slate-700 flex h-full items-center justify-center">
-    <main class="container max-w-2xl divide-y divide-black rounded-2xl bg-white box-border py-2 px-4">
+    <main class="container max-w-2xl divide-y divide-black sm:rounded-lg bg-white box-border py-2 px-4">
         <!-- Form Title -->
-        <div class="form-title mb-2">
+        <div class="form-title mb-3">
             <h1 class="text-xl font-semibold">Daftar Akun Baru</h1>
         </div>
         <!-- Form Title -->
@@ -74,7 +74,7 @@
             <!-- Konfirmasi Password -->
 
             <!-- Tombol Daftar -->
-            <button type="submit" class="mt-3 mb-1 rounded-lg text-white text-lg sm:text-xl hover:bg-blue-700 py-2 w-full bg-blue-500">Daftar Sekarang</button>
+            <button type="submit" class="mt-3 mb-1 rounded text-white text-lg sm:text-xl hover:bg-blue-700 py-2 w-full bg-blue-500">Daftar Sekarang</button>
             <!-- Tombol Daftar -->
         </form>
         <!-- Form Input -->

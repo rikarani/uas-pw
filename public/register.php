@@ -71,8 +71,8 @@
         </div>
         <!-- Name -->
 
-        <!-- Email -->
-        <div class="relative email mt-3">
+        <!-- Username -->
+        <div class="relative username mt-3">
           <input
             type="text"
             id="username"
@@ -86,7 +86,7 @@
             >Username</label
           >
         </div>
-        <!-- Email -->
+        <!-- Username -->
 
         <!-- Password -->
         <div class="relative password mt-3">

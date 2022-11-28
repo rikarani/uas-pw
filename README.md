@@ -10,5 +10,5 @@
 
 - [x] Bikin Halaman Daftar
 - [x] Bikin Halaman Login
-- [ ] Bikin Logic Daftar
+- [x] Bikin Logic Daftar
 - [ ] Bikin Logic Login

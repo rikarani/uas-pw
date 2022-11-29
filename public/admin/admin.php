@@ -1,4 +1,6 @@
 <?php
+require "../../src/php/fungsi.php";
+
 session_start();
 
 if (!isset($_SESSION["login"])) {
@@ -10,6 +12,9 @@ if ($_SESSION["login"] == "guest") {
   header("Location: ../guest/guest.php");
   exit;
 }
+
+// get banyaknya user yang terdaftar
+$totalUser = getRows("users");
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +98,7 @@ if ($_SESSION["login"] == "guest") {
   <main class="container grid grid-rows-2 justify-items-center">
     <!-- User Card -->
     <div class="h-44 w-96 self-center bg-white box-border p-4 rounded flex flex-col justify-around">
-      <h2 class="text-3xl font-semibold">3</h2>
+      <h2 class="text-3xl font-semibold"><?= $totalUser; ?></h2>
       <h3 class="text-2xl font-semibold">User Terdaftar</h3>
     </div>
     <!-- User Card -->

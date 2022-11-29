@@ -14,7 +14,11 @@ if ($_SESSION["login"] == "guest") {
 }
 
 // get banyaknya user yang terdaftar
-$totalUser = getRows("users");
+if (getRows("users") > 1) {
+  $totalUser = getRows("users") - 1;
+} else {
+  $totalUser = 0;
+}
 ?>
 
 <!DOCTYPE html>

@@ -41,7 +41,7 @@ function tambahUser($data)
     $namaDepan = $data["nama_depan"];
     $namaBelakang = $data["nama_belakang"];
     $username = str_replace(' ', '', strtolower(htmlspecialchars($data["username"])));
-    $password = password_hash($data["password"], PASSWORD_DEFAULT);
+    $password = password_hash(htmlspecialchars($data["password"]), PASSWORD_DEFAULT);
     $role = $data["role"];
 
     mysqli_query($koneksi, "INSERT INTO users VALUES ('', '$namaDepan', '$namaBelakang', '$username', '$password', '$role')");

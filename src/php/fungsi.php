@@ -2,6 +2,17 @@
 // Koneksi ke Database
 $koneksi = mysqli_connect("localhost", "root", "", "uas_pw");
 
+// Fungsi buat get semua row yang ada di tabel
+function getRows(String $namaTabel)
+{
+    global $koneksi;
+
+    $kueri = mysqli_query($koneksi, "SELECT * FROM $namaTabel");
+
+    return mysqli_num_rows($kueri);
+}
+
+
 // Fungsi buat tambah user baru
 function tambahUser($data)
 {

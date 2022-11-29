@@ -36,9 +36,11 @@ if (isset($_POST["login"])) {
     if (password_verify($password, $data["password"])) {
       if ($isAdmin) {
         $_SESSION["login"] = "admin";
+        $_SESSION["nama"] = $data["nama_depan"];
         header("Location: ../public/admin/admin.php");
       } else {
         $_SESSION["login"] = "guest";
+        $_SESSION["nama"] = $data["nama_depan"];
         header("Location: ../public/guest/guest.php");
       }
     } else {

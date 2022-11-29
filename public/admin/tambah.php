@@ -10,11 +10,15 @@ if (!isset($_SESSION["login"])) {
 
 if (isset($_POST["tambah"])) {
     if (tambahUser($_POST) > 0) {
-        echo "<script>alert('User Berhasil Ditambahkan');</script>";
-        header("Location: tambah.php");
+        echo "<script>
+                alert('User Berhasil Ditambahkan');
+                window.location.href = 'tambah.php';
+              </script>";
     } else {
-        echo "<script>alert('User Gagal Ditambahkan');</script>";
-        header("Location: tambah.php");
+        echo "<script>
+                alert('User Gagal Ditambahkan');
+                window.location.href = 'tambah.php';
+              </script>";
     }
 }
 
@@ -106,8 +110,26 @@ if (isset($_POST["tambah"])) {
 
         <div class="form-tambah bg-white box-border py-2 px-4 rounded-lg">
             <form action="" method="POST">
+                <!-- Name -->
+                <div class="name-inputs mt-3 w-full flex gap-3">
+                    <!-- First Name -->
+                    <div class="relative first-name w-1/2">
+                        <input type="text" name="nama_depan" id="first-name" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="first-name" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Nama Depan</label>
+                    </div>
+                    <!-- First Name -->
+
+                    <!-- Last Name -->
+                    <div class="relative last-name w-1/2">
+                        <input type="text" name="nama_belakang" id="last-name" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="last-name" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Nama Belakang</label>
+                    </div>
+                    <!-- Last Name -->
+                </div>
+                <!-- Name -->
+
                 <!-- Username -->
-                <div class="relative username mt-2">
+                <div class="relative username mt-3">
                     <input type="text" name="username" id="username" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label for="username" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Username</label>
                 </div>

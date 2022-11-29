@@ -7,7 +7,7 @@ if (!isset($_SESSION["login"])) {
 }
 
 if ($_SESSION["login"] == "guest") {
-  header("Location: ../../guest.php");
+  header("Location: ../guest/guest.php");
   exit;
 }
 ?>
@@ -90,20 +90,20 @@ if ($_SESSION["login"] == "guest") {
   </aside>
   <!-- Sidebar -->
 
-  <main class="container grid grid-rows-2 sm:grid-cols-2 justify-items-center sm:grid-rows-1 batas">
-    <!-- Hotel Card -->
-    <div class="h-44 w-96 sm:w-52 self-center bg-white box-border p-4 rounded flex flex-col justify-around">
-      <h2 class="text-3xl font-semibold">3</h2>
-      <h3 class="text-2xl font-semibold">Hotel Terdaftar</h3>
-    </div>
-    <!-- Hotel Card -->
-
+  <main class="container grid grid-rows-2 justify-items-center">
     <!-- User Card -->
-    <div class="h-44 w-96 sm:w-52 self-center bg-white box-border p-4 rounded flex flex-col justify-around">
+    <div class="h-44 w-96 self-center bg-white box-border p-4 rounded flex flex-col justify-around">
       <h2 class="text-3xl font-semibold">3</h2>
       <h3 class="text-2xl font-semibold">User Terdaftar</h3>
     </div>
     <!-- User Card -->
+
+    <!-- Hotel Card -->
+    <div class="h-44 w-96 self-center bg-white box-border p-4 rounded flex flex-col justify-around">
+      <h2 class="text-3xl font-semibold">3</h2>
+      <h3 class="text-2xl font-semibold">Hotel Terdaftar</h3>
+    </div>
+    <!-- Hotel Card -->
   </main>
 </body>
 

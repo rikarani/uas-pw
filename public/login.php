@@ -30,7 +30,7 @@ if (isset($_POST["login"])) {
         header("Location: ../public/admin/admin.php");
       } else {
         $_SESSION["login"] = "guest";
-        header("Location: ../guest.php");
+        header("Location: ../public/guest/guest.php");
       }
     } else {
       echo "<script>alert('Password Salah');</script>";

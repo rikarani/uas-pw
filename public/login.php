@@ -3,6 +3,15 @@ session_start();
 
 require "../src/php/fungsi.php";
 
+// kalau user dah login, tendang dia dari halaman login
+if (isset($_SESSION["login"]) == "admin") {
+  header("Location: ../public/admin/admin.php");
+  exit;
+} else if (isset($_SESSION["login"]) == "guest") {
+  header("Location: ../public/guest/guest.php");
+  exit;
+}
+
 if (isset($_POST["login"])) {
   global $koneksi;
 

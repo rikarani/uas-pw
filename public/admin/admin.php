@@ -1,13 +1,14 @@
 <?php
 require "../../src/php/fungsi.php";
-
 session_start();
 
+// kalo blom login, tendang balik ke halaman login
 if (!isset($_SESSION["login"])) {
   header("Location: ../login.php");
   exit;
 }
 
+// kalo login sebagai guest, lempar ke halaman guest
 if ($_SESSION["login"] == "guest") {
   header("Location: ../guest/guest.php");
   exit;
@@ -54,7 +55,7 @@ if (getRows("users") > 1) {
       <!-- Salam  -->
       <div class="salam mb-2 px-3">
         <h1 class="text-white text-xl font-bold mb-2">Selamat Datang</h1>
-        <h2 class="text-white text-3xl font-bold">Admin</h2>
+        <h2 class="text-white text-3xl font-bold"><?= $_SESSION["nama"]; ?></h2>
       </div>
       <!-- Salam  -->
 

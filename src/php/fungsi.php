@@ -12,7 +12,27 @@ function getRows(String $namaTabel)
     return mysqli_num_rows($kueri);
 }
 
+// Fungsi buat cek ketersediaan username
+function cekUsername($username)
+{
+    global $koneksi;
 
+    $kueri = mysqli_query($koneksi, "SELECT * FROM users WHERE username = '$username'");
+
+    return mysqli_num_rows($kueri);
+}
+
+// Fungsi buat cek password dan konfirmasi password
+function cekPassword($data)
+{
+    if ($data["password"] == $data["konfirmasi_password"]) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// CRUD Related Function
 // Fungsi buat tambah user baru
 function tambahUser($data)
 {

@@ -11,4 +11,8 @@
 - [x] Bikin Halaman Daftar
 - [x] Bikin Halaman Login
 - [x] Bikin Logic Daftar
-- [ ] Bikin Logic Login
+- [x] Bikin Logic Login
+- [ ] Bikin Dashboard buat Guest
+- [ ] Bikin Halaman Pemesanan
+- [ ] Bikin Logic Pemesanan
+- [ ] Bikin apalah

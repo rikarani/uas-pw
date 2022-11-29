@@ -1,7 +1,7 @@
 // Redirect pas tombol "Mulai Sekarang diklik"
 const mulaiSekarang = document.getElementById("letsgo");
 mulaiSekarang.addEventListener("click", () => {
-  window.location.href = "login.php";
+  window.location.href = "./public/login.php";
 });
 
 // Tampilkan tahun buat copyright

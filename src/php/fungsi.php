@@ -112,7 +112,7 @@ function tambahHotel($data)
     $namaHotel = $data["nama_hotel"];
     $alamatHotel = $data["alamat"];
     $hargaHotel = $data["harga"];
-    $lokasi = $data["provinsi"];
+    $lokasi = $data["lokasi"];
 
     // Upload Gambar Dulu
     $gambar = uploadGambar();

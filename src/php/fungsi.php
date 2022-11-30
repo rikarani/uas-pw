@@ -1,6 +1,7 @@
 <?php
 // Koneksi ke Database
 $koneksi = mysqli_connect("localhost", "root", "", "uas_pw");
+// $koneksi = mysqli_connect("sql110.byetcluster.com", "epiz_33081789", "hWnxDEg1I0p", "epiz_33081789_uas_pw");
 
 // Fungsi buat get semua row yang ada di tabel
 function getRows(String $namaTabel)
@@ -64,6 +65,21 @@ function uploadGambar()
     move_uploaded_file($dariSini, $root . '/uas/src/img/hotel/' . $namaFile);
 
     return $namaFile;
+}
+
+function fetch(String $sql)
+{
+    global $koneksi;
+
+    $kueri = mysqli_query($koneksi, $sql);
+
+    $results = [];
+
+    while ($data = mysqli_fetch_assoc($kueri)) {
+        $results[] = $data;
+    }
+
+    return $results;
 }
 
 // CRUD Related Function

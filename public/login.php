@@ -102,8 +102,14 @@ if (isset($_POST["login"])) {
       </div>
       <!-- Password -->
 
+      <!-- Register -->
+      <div class="register text-right mt-2">
+        <a href="register.php" class="text-xs text-blue-900 hover:text-blue-300">Belum Punya Akun? Daftar Sekarang</a>
+      </div>
+      <!-- Register -->
+
       <!-- Tombol Login -->
-      <button type="submit" name="login" class="w-full box-border py-2 px-4 rounded mt-3 mb-1 text-white text-lg bg-blue-500 hover:bg-blue-700">Login</button>
+      <button type="submit" name="login" class="w-full box-border py-2 px-4 rounded mt-2 mb-1 text-white text-lg bg-blue-500 hover:bg-blue-700">Login</button>
       <!-- Tombol Login -->
     </form>
     <!-- Form Input -->

@@ -103,6 +103,12 @@ if (isset($_POST["daftar"])) {
       <input type="text" name="role" value="guest" class="hidden px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" />
       <!-- Role -->
 
+      <!-- Login -->
+      <div class="login text-right mt-2">
+        <a href="login.php" class="text-xs text-blue-900 hover:text-blue-300">Sudah Punya Akun? Login</a>
+      </div>
+      <!-- Login -->
+
       <!-- Tombol Daftar -->
       <button type="submit" name="daftar" class="mt-3 mb-1 rounded text-white text-lg sm:text-xl hover:bg-blue-700 py-2 w-full bg-blue-500">Daftar Sekarang</button>
       <!-- Tombol Daftar -->

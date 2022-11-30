@@ -14,6 +14,9 @@ if (!isset($_SESSION["login"])) {
 if ($_SESSION["login"] == "admin") {
     header("Location: ../admin/admin.php");
 }
+
+// Fetch semua data Hotel
+$hotels = fetch("SELECT * FROM hotels");
 ?>
 
 <!DOCTYPE html>
@@ -108,27 +111,30 @@ if ($_SESSION["login"] == "admin") {
 
         <!-- Card Wrapper -->
         <div class="card-container grid grid-cols-3 gap-x-6 grid-flow-row w-full py-4 px-3 box-border">
-            <!-- Card Hotel 1 -->
-            <div class="hotel-wrapper h-3/4 mt-4 w-full p-4 box-border rounded-lg bg-white overflow-hidden">
-                <!-- Gambar Hotel -->
-                <figure class="w-full h-1/2 flex-shrink-0 flex-grow-0 rounded overflow-hidden">
-                    <img src="../../src/img/hotel/hotel1.jpg" alt="Hotel 1" class="w-full max-h-full" />
-                </figure>
-                <!-- Gambar Hotel -->
+            <?php foreach ($hotels as $hotel) : ?>
+                <!-- Card Hotel -->
+                <div class="hotel-wrapper h-3/4 mt-4 w-full p-4 box-border rounded-lg bg-white overflow-hidden">
+                    <!-- Gambar Hotel -->
+                    <figure class="w-full h-1/2 flex-shrink-0 flex-grow-0 rounded overflow-hidden">
+                        <img src="../../src/img/hotel/<?= $hotel["gambar"] ?>" alt="Hotel 1" class="w-full max-h-full" />
+                    </figure>
+                    <!-- Gambar Hotel -->
 
-                <!-- Detail Hotel -->
-                <div class="hotel-detail mt-2 w-full flex flex-col justify-between">
-                    <div class="teks flex flex-col gap-3">
-                        <h5 class="font-bold text-2xl">Hotel Melati</h5>
-                        <h5 class="font-semibold text-lg">Jl. Pak Dolah ngalor ngidul sana sini</h5>
-                        <h5 class="font-semibold text-lg">Harga Mulai Rp 500.000</h5>
+                    <!-- Detail Hotel -->
+                    <div class="hotel-detail mt-2 w-full flex flex-col justify-between">
+                        <div class="teks flex flex-col gap-3">
+                            <h5 class="font-bold text-2xl"><?= $hotel["nama_hotel"]; ?></h5>
+                            <h5 class="font-semibold text-base"><?= $hotel["alamat_hotel"]; ?>, <?= $hotel["provinsi"]; ?></h5>
+                            <h5 class="font-semibold text-base">Harga Mulai Rp <?= $hotel["harga"]; ?></h5>
+                        </div>
+
+                        <a href="" class="bg-blue-500 hover:bg-blue-700 mt-4 text-white text-center py-2 px-4 rounded text-lg font-semibold">Pesan Kamar</a>
                     </div>
-
-                    <a href="" class="bg-blue-500 hover:bg-blue-700 mt-4 text-white text-center py-2 px-4 rounded text-lg font-semibold">Pesan Kamar</a>
+                    <!-- Detail Hotel -->
                 </div>
-                <!-- Detail Hotel -->
-            </div>
-            <!-- Card Hotel 1 -->
+                <!-- Card Hotel -->
+            <?php endforeach ?>
+
         </div>
         <!-- Card Wrapper -->
     </main>

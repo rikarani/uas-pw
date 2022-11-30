@@ -62,9 +62,14 @@ function uploadGambar()
         return false;
     }
 
-    move_uploaded_file($dariSini, $root . '/uas/src/img/hotel/' . $namaFile);
+    // Generate nama file random
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= ".";
+    $namaFileBaru .= $fileExt;
 
-    return $namaFile;
+    move_uploaded_file($dariSini, $root . '/uas/src/img/hotel/' . $namaFileBaru);
+
+    return $namaFileBaru;
 }
 
 function fetch(String $sql)
@@ -107,7 +112,7 @@ function tambahHotel($data)
     $namaHotel = $data["nama_hotel"];
     $alamatHotel = $data["alamat"];
     $hargaHotel = $data["harga"];
-    $lokasi = $data["provinsi"];
+    $lokasi = $data["lokasi"];
 
     // Upload Gambar Dulu
     $gambar = uploadGambar();

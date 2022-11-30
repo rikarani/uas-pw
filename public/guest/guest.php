@@ -14,8 +14,6 @@ if (!isset($_SESSION["login"])) {
 if ($_SESSION["login"] == "admin") {
     header("Location: ../admin/admin.php");
 }
-
-// Ubah nama penggunanya sesuai dengan yang login
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +44,7 @@ if ($_SESSION["login"] == "admin") {
 
 <body class="min-h-full relative bg-slate-200 flex">
     <!-- Sidebar -->
-    <aside class="w-64 h-screen">
+    <aside class="w-[250px] h-screen">
         <div class="h-full fixed overflow-y-auto py-4 px-3 bg-gray-800">
             <!-- Salam  -->
             <div class="salam mb-2 px-3">
@@ -109,23 +107,24 @@ if ($_SESSION["login"] == "admin") {
         <h5 class="text-3xl font-semibold mt-4 ml-3">Cari Hotel? disini lah</h5>
 
         <!-- Card Wrapper -->
-        <div class="card-container grid grid-cols-1 w-full py-4 px-3 box-border">
+        <div class="card-container grid grid-cols-3 gap-x-6 grid-flow-row w-full py-4 px-3 box-border">
             <!-- Card Hotel 1 -->
-            <div class="hotel-wrapper gap-4 flex mt-4 w-full p-4 box-border rounded-lg bg-white overflow-hidden">
+            <div class="hotel-wrapper h-3/4 mt-4 w-full p-4 box-border rounded-lg bg-white overflow-hidden">
                 <!-- Gambar Hotel -->
-                <figure class="w-1/2 flex-shrink-0 flex-grow-0 rounded overflow-hidden">
-                    <img src="../../src/img/hotel/hotel1.jpg" alt="Hotel 1" />
+                <figure class="w-full h-1/2 flex-shrink-0 flex-grow-0 rounded overflow-hidden">
+                    <img src="../../src/img/hotel/hotel1.jpg" alt="Hotel 1" class="w-full max-h-full" />
                 </figure>
                 <!-- Gambar Hotel -->
 
                 <!-- Detail Hotel -->
-                <div class="hotel-detail w-1/2 flex flex-col justify-between">
+                <div class="hotel-detail mt-2 w-full flex flex-col justify-between">
                     <div class="teks flex flex-col gap-3">
                         <h5 class="font-bold text-2xl">Hotel Melati</h5>
                         <h5 class="font-semibold text-lg">Jl. Pak Dolah ngalor ngidul sana sini</h5>
                         <h5 class="font-semibold text-lg">Harga Mulai Rp 500.000</h5>
                     </div>
-                    <a href="" class="bg-blue-500 text-lg hover:bg-blue-700 text-white text-center py-2 px-4 w-full rounded">Pesan Kamar Sekarang</a>
+
+                    <a href="" class="bg-blue-500 hover:bg-blue-700 mt-4 text-white text-center py-2 px-4 rounded text-lg font-semibold">Pesan Kamar</a>
                 </div>
                 <!-- Detail Hotel -->
             </div>

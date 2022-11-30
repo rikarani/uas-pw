@@ -13,6 +13,8 @@
 - [x] Bikin Logic Daftar
 - [x] Bikin Logic Login
 - [x] Bikin Dashboard buat Guest
+- [x] Bikin Halaman Tambah Hotel
+- [x] Bikin Logic buat Tambah Hotel
 - [ ] Bikin Halaman Pemesanan
 - [ ] Bikin Logic Pemesanan
 - [ ] Bikin apalah

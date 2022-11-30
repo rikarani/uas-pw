@@ -2,14 +2,21 @@
 require "../../src/php/fungsi.php";
 session_start();
 
-if (isset($_POST["tambah"])) {
-    if (tambahHotel($_POST) > 0) {
-        echo "<script>
-                alert('Tambah Hotel Berhasil');
-                window.location.href = 'tambah_hotel.php';
-              </script>";
-    }
+// kalo blom login, tendang balik ke halaman login
+if (!isset($_SESSION["login"])) {
+    header("Location: ../login.php");
+    exit;
 }
+
+// kalo login sebagai guest, lempar ke halaman guest
+if ($_SESSION["login"] == "guest") {
+    header("Location: ../guest/guest.php");
+    exit;
+}
+
+$nomor = 1;
+
+$hotels = fetch("SELECT * FROM hotels");
 ?>
 
 <!DOCTYPE html>
@@ -19,12 +26,12 @@ if (isset($_POST["tambah"])) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hotelin - Tambah Hotel</title>
+    <title>Hotelin - Admin Dashboard</title>
 
     <link rel="shortcut icon" href="../../src/img/logo.png" type="image/x-icon" />
 
     <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Tailwind CDN -->
 
     <!-- Custom CSS -->
@@ -70,7 +77,7 @@ if (isset($_POST["tambah"])) {
                         </a>
                     </li>
                     <li>
-                        <a href="user_list.php" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                        <a href="#" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
                             <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 transition duration-75 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                             </svg>
@@ -86,7 +93,7 @@ if (isset($_POST["tambah"])) {
                         </a>
                     </li>
                     <li>
-                        <a href="hotel_list.php" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                        <a href="tambah_hotel.php" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" stroke-width="1.5" stroke="currentColor" class="flex-shrink-0 w-6 h-6 transition duration-75 text-gray-400 group-hover:text-white">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
                             </svg>
@@ -108,56 +115,39 @@ if (isset($_POST["tambah"])) {
     </aside>
     <!-- Sidebar -->
 
-    <main class="w-full py-4 px-3">
-        <h5 class="text-center font-bold text-3xl mb-4">Tambah Hotel Baru</h5>
+    <main class="container py-4 px-3">
+        <h3 class="font-semibold text-4xl">Daftar Hotel</h3>
 
-        <div class="form-tambah bg-white box-border py-2 px-4 rounded-lg">
-            <form action="" method="POST" enctype="multipart/form-data">
-                <!-- Nama Hotel -->
-                <div class="name-inputs mt-3 w-full flex gap-3">
-                    <!-- First Name -->
-                    <div class="relative first-name w-full">
-                        <input type="text" name="nama_hotel" id="nama-hotel" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" placeholder=" " required />
-                        <label for="nama-hotel" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Nama Hotel</label>
+        <!-- Card Wrapper -->
+        <div class="card-container grid grid-cols-3 gap-x-6 grid-flow-row w-full py-4 px-3 box-border">
+            <?php foreach ($hotels as $hotel) : ?>
+                <!-- Card Hotel -->
+                <div class="hotel-wrapper h-3/4 mt-4 w-full p-4 box-border rounded-lg bg-white overflow-hidden">
+                    <!-- Gambar Hotel -->
+                    <figure class="w-full h-1/2 flex-shrink-0 flex-grow-0 rounded overflow-hidden">
+                        <img src="../../src/img/hotel/<?= $hotel["gambar"] ?>" alt="Hotel 1" class="w-full max-h-full" />
+                    </figure>
+                    <!-- Gambar Hotel -->
+
+                    <!-- Detail Hotel -->
+                    <div class="hotel-detail mt-2 w-full flex flex-col justify-between">
+                        <div class="teks flex flex-col gap-2">
+                            <h5 class="font-bold text-2xl"><?= $hotel["nama_hotel"]; ?></h5>
+                            <h5 class="font-semibold text-base"><?= $hotel["alamat_hotel"]; ?></h5>
+                            <h5 class="font-semibold text-base"><?= $hotel["lokasi"]; ?></h5>
+                        </div>
+
+                        <a href="../../src/php/hapus_hotel.php?id=<?= $hotel["id_hotel"] ?>" onclick="return confirm('Apakah Ingin Menghapus Data Hotel?');" class="bg-red-500 hover:bg-red-700 mt-4 text-white text-center py-2 px-4 rounded text-lg font-semibold">Hapus Hotel</a>
                     </div>
-                    <!-- First Name -->
+                    <!-- Detail Hotel -->
                 </div>
-                <!-- Nama Hotel -->
-
-                <!-- Alamat Hotel -->
-                <div class="relative alamat mt-3">
-                    <input type="text" name="alamat" id="alamat" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" placeholder=" " required />
-                    <label for="alamat" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Alamat Hotel</label>
-                </div>
-                <!-- Alamat Hotel -->
-
-                <!-- Harga -->
-                <div class="relative harga mt-3">
-                    <input type="number" name="harga" id="harga" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" placeholder=" " required />
-                    <label for="harga" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Harga</label>
-                </div>
-                <!-- Harga -->
-
-                <!-- Provinsi -->
-                <div class="relative provinsi mt-3">
-                    <input type="text" name="lokasi" id="lokasi" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" placeholder=" " required />
-                    <label for="lokasi" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Lokasi</label>
-                </div>
-                <!-- Provinsi -->
-
-                <!-- Upload Gambar -->
-                <div class="gambar mt-3 flex items-center">
-                    <label for="gambar" class="text-base text-slate-400 top-2 z-10 origin-[0] bg-white px-2">Gambar</label>
-                    <input type="file" name="gambar" id="gambar" class="px-2.5 pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" required />
-                </div>
-                <!-- Gambar -->
-
-                <!-- Tombol Tambah -->
-                <button type="submit" name="tambah" class="mt-3 mb-1 w-full py-2 px-4 text-lg text-white rounded bg-blue-500 hover:bg-blue-700">Tambah Hotel Baru</button>
-                <!-- Tombol Tambah -->
-            </form>
+                <!-- Card Hotel -->
+            <?php endforeach ?>
         </div>
+        <!-- Card Wrapper -->
     </main>
+
+    <script src="../../src/js/adminController.js" type="module"></script>
 </body>
 
 </html>

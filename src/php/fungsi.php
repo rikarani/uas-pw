@@ -141,3 +141,22 @@ function tambahPemesanan($data)
 
     return mysqli_affected_rows($koneksi);
 }
+
+// fungsi hapus user
+function hapusUser($id)
+{
+    global $koneksi;
+
+    mysqli_query($koneksi, "DELETE FROM users WHERE id_user = '$id'");
+
+    return mysqli_affected_rows($koneksi);
+}
+
+function hapusHotel($id)
+{
+    global $koneksi;
+
+    mysqli_query($koneksi, "DELETE FROM hotels WHERE id_hotel = '$id'");
+
+    return mysqli_affected_rows($koneksi);
+}

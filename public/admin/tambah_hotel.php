@@ -33,12 +33,6 @@ if (isset($_POST["tambah"])) {
           -webkit-tap-highlight-color: transparent;
         }
       }
-
-      @layer utilities {
-        .batas {
-          @apply border-2 border-dashed border-red-500;
-        }
-      }
     </style>
     <!-- Custom CSS -->
 </head>

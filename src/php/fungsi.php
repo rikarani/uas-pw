@@ -124,3 +124,20 @@ function tambahHotel($data)
 
     return mysqli_affected_rows($koneksi);
 }
+
+// Fungsi tambah pemesanan
+function tambahPemesanan($data)
+{
+    global $koneksi;
+
+    $nama_pemesan = $data["nama_pemesan"];
+    $nama_hotel = $data["nama_hotel"];
+    $tanggal_pemesanan = date("Y-m-d H:i:s");
+    $tanggal_mulai = $data["tanggal_mulai"];
+    $tanggal_selesai = $data["tanggal_selesai"];
+    $jumlah_kamar = $data["jumlah_kamar"];
+
+    mysqli_query($koneksi, "INSERT INTO pemesanan VALUES ('', '$nama_pemesan', '$nama_hotel', '$tanggal_pemesanan', '$tanggal_mulai', '$tanggal_selesai', '$jumlah_kamar')");
+
+    return mysqli_affected_rows($koneksi);
+}

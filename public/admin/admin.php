@@ -20,6 +20,13 @@ if (getRows("users") > 1) {
 } else {
   $totalUser = 0;
 }
+
+// get banyaknya hotel yang terdaftar
+if (getRows("hotels") > 0) {
+  $totalHotel = getRows("hotels") - 1;
+} else {
+  $totalHotel = 0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,32 +67,34 @@ if (getRows("users") > 1) {
       <!-- Salam  -->
 
       <!-- Side Bar -->
-      <ul class="h-5/6 flex flex-col justify-evenly">
-        <li>
-          <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-              <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-            </svg>
-            <span class="ml-3">Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="tambah_user.php" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-            </svg>
-            <span class="flex-1 ml-3 whitespace-nowrap">Tambah User</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" stroke-width="1.5" stroke="currentColor" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
-            </svg>
-            <span class="flex-1 ml-3 whitespace-nowrap">Tambah Hotel</span>
-          </a>
-        </li>
+      <ul class="h-5/6 flex flex-col justify-between">
+        <div class="mt-8 flex flex-col gap-8">
+          <li>
+            <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+              </svg>
+              <span class="ml-3">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="tambah_user.php" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">Tambah User</span>
+            </a>
+          </li>
+          <li>
+            <a href="tambah_hotel.php" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" stroke-width="1.5" stroke="currentColor" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">Tambah Hotel</span>
+            </a>
+          </li>
+        </div>
         <li>
           <a href="../../logout.php" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
@@ -100,17 +109,17 @@ if (getRows("users") > 1) {
   </aside>
   <!-- Sidebar -->
 
-  <main class="container grid grid-rows-2 justify-items-center">
+  <main class="container grid grid-flow-row grid-cols-1 justify-items-center gap-4">
     <!-- User Card -->
-    <div class="h-44 w-96 self-center bg-white box-border p-4 rounded flex flex-col justify-around">
+    <div class="h-44 w-72 self-center bg-white box-border p-4 rounded flex flex-col justify-around">
       <h2 class="text-3xl font-semibold"><?= $totalUser; ?></h2>
       <h3 class="text-2xl font-semibold">User Terdaftar</h3>
     </div>
     <!-- User Card -->
 
     <!-- Hotel Card -->
-    <div class="h-44 w-96 self-center bg-white box-border p-4 rounded flex flex-col justify-around">
-      <h2 class="text-3xl font-semibold">3</h2>
+    <div class="h-44 w-72 self-center bg-white box-border p-4 rounded flex flex-col justify-around">
+      <h2 class="text-3xl font-semibold"><?= $totalHotel; ?></h2>
       <h3 class="text-2xl font-semibold">Hotel Terdaftar</h3>
     </div>
     <!-- Hotel Card -->

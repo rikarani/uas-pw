@@ -124,11 +124,11 @@ $hotels = fetch("SELECT * FROM hotels");
                     <div class="hotel-detail mt-2 w-full flex flex-col justify-between">
                         <div class="teks flex flex-col gap-3">
                             <h5 class="font-bold text-2xl"><?= $hotel["nama_hotel"]; ?></h5>
-                            <h5 class="font-semibold text-base"><?= $hotel["alamat_hotel"]; ?>, <?= $hotel["provinsi"]; ?></h5>
+                            <h5 class="font-semibold text-base"><?= $hotel["alamat_hotel"]; ?>, <?= $hotel["lokasi"]; ?></h5>
                             <h5 class="font-semibold text-base">Harga Mulai Rp <?= $hotel["harga"]; ?></h5>
                         </div>
 
-                        <a href="" class="bg-blue-500 hover:bg-blue-700 mt-4 text-white text-center py-2 px-4 rounded text-lg font-semibold">Pesan Kamar</a>
+                        <a href="pesan.php?id_hotel=<?= $hotel["id_hotel"]; ?>" class="bg-blue-500 hover:bg-blue-700 mt-4 text-white text-center py-2 px-4 rounded text-lg font-semibold">Pesan Kamar</a>
                     </div>
                     <!-- Detail Hotel -->
                 </div>

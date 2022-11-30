@@ -1,30 +1,22 @@
 <?php
 require "../../src/php/fungsi.php";
-
 session_start();
 
+// kalo blom login, tendang balik ke halaman login
 if (!isset($_SESSION["login"])) {
     header("Location: ../login.php");
     exit;
 }
 
-if (isset($_POST["tambah"])) {
-    if (tambahUser($_POST) > 0) {
-        echo "<script>
-                alert('User Berhasil Ditambahkan');
-                window.location.href = 'tambah_user.php';
-              </script>";
-    } else {
-        echo "<script>
-                alert('User Gagal Ditambahkan');
-                window.location.href = 'tambah_user.php';
-              </script>";
-    }
+// kalo login sebagai guest, lempar ke halaman guest
+if ($_SESSION["login"] == "guest") {
+    header("Location: ../guest/guest.php");
+    exit;
 }
 
-// if ($_SESSION["login"] == "guest") {
-//     header("Location: ../../guest.php");
-// }
+$nomor = 1;
+
+$users = fetch("SELECT * FROM users WHERE role = 'guest'");
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +26,12 @@ if (isset($_POST["tambah"])) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hotelin - Tambah User</title>
+    <title>Hotelin - Admin Dashboard</title>
 
     <link rel="shortcut icon" href="../../src/img/logo.png" type="image/x-icon" />
 
     <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Tailwind CDN -->
 
     <!-- Custom CSS -->
@@ -77,7 +69,7 @@ if (isset($_POST["tambah"])) {
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                        <a href="tambah_user.php" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
                             <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 transition duration-75 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                             </svg>
@@ -85,7 +77,7 @@ if (isset($_POST["tambah"])) {
                         </a>
                     </li>
                     <li>
-                        <a href="user_list.php" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
+                        <a href="#" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700">
                             <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 transition duration-75 text-gray-400 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                             </svg>
@@ -123,60 +115,37 @@ if (isset($_POST["tambah"])) {
     </aside>
     <!-- Sidebar -->
 
-    <main class="w-full py-4 px-3">
-        <h5 class="text-center font-bold text-3xl mb-4">Tambah User Baru</h5>
+    <main class="container py-4 px-3">
+        <h3 class="font-semibold text-4xl">Daftar User</h3>
 
-        <div class="form-tambah bg-white box-border py-2 px-4 rounded-lg">
-            <form action="" method="POST">
-                <!-- Name -->
-                <div class="name-inputs mt-3 w-full flex gap-3">
-                    <!-- First Name -->
-                    <div class="relative first-name w-1/2">
-                        <input type="text" name="nama_depan" id="first-name" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" placeholder=" " required />
-                        <label for="first-name" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Nama Depan</label>
-                    </div>
-                    <!-- First Name -->
-
-                    <!-- Last Name -->
-                    <div class="relative last-name w-1/2">
-                        <input type="text" name="nama_belakang" id="last-name" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" placeholder=" " required />
-                        <label for="last-name" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Nama Belakang</label>
-                    </div>
-                    <!-- Last Name -->
-                </div>
-                <!-- Name -->
-
-                <!-- Username -->
-                <div class="relative username mt-3">
-                    <input type="text" name="username" id="username" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" placeholder=" " required />
-                    <label for="username" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Username</label>
-                </div>
-                <!-- Username -->
-
-                <!-- Password -->
-                <div class="relative password mt-3">
-                    <input type="password" name="password" id="password" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:border-blue-500 focus:outline-none focus:ring-0 peer" placeholder=" " required />
-                    <label for="password" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Password</label>
-                </div>
-                <!-- Password -->
-
-                <!-- Dropdown -->
-                <div class="relative role mt-3">
-                    <select name="role" id="role">
-                        <option value="" disabled selected></option>
-                        <option value="admin">Admin</option>
-                        <option value="guest">Guest</option>
-                    </select>
-                    <label for="role" class="absolute text-base text-slate-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Pilih Role</label>
-                </div>
-                <!-- Dropdown -->
-
-                <!-- Tombol Tambah -->
-                <button type="submit" name="tambah" class="mt-3 mb-1 w-full py-2 px-4 text-lg text-white rounded bg-blue-500 hover:bg-blue-700">Tambah User Baru</button>
-                <!-- Tombol Tambah -->
-            </form>
-        </div>
+        <table class="bg-white text-center w-full rounded-lg mt-4">
+            <thead>
+                <tr>
+                    <th class="py-2">No.</th>
+                    <th>Aksi</th>
+                    <th>Nama Depan</th>
+                    <th>Nama Belakang</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $user) : ?>
+                    <tr class="even:bg-slate-100 odd:bg-slate-300">
+                        <td><?= $nomor; ?></td>
+                        <td class="flex gap-4 justify-center py-2">
+                            <a href="../../src/php/hapus_user.php?id=<?= $user["id_user"] ?>" onclick="return confirm('Apakah Ingin Menghapus Data User?');" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700">Hapus User</a>
+                        </td>
+                        <td><?= $user["nama_depan"] ?></td>
+                        <td><?= $user["nama_belakang"] ?></td>
+                        <td><?= $user["username"] ?></td>
+                    </tr>
+                    <?php $nomor++; ?>
+                <?php endforeach ?>
+            </tbody>
+        </table>
     </main>
+
+    <script src="../../src/js/adminController.js" type="module"></script>
 </body>
 
 </html>
